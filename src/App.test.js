@@ -1,15 +1,26 @@
-import { render, screen } from "@testing-library/react";
-import App from "./App";
-import TableReservations from "./components/TableReservations";
+import React from "react";
+import { render, fireEvent, screen } from "@testing-library/react";
+import TableReservations from "./TableReservations";
 
-test("renders learn react link", () => {
-  render(<App />);
-  const linkElement = screen.getByText(/learn react/i);
-  expect(linkElement).toBeInTheDocument();
-});
+describe("TableReservations", () => {
+  it("should submit the form with correct data", () => {
+    render(<TableReservations />);
 
-test("Renders the TableReservations form", () => {
-  render(<TableReservations />);
-  const formElement = screen.getByText("Book now");
-  expect(formElement).yoBeInTheDocument();
+    fireEvent.change(screen.getByLabelText("Choose a Date"), {
+      target: { value: "2024-02-16" },
+    });
+    fireEvent.change(screen.getByLabelText("Choose time"), {
+      target: { value: "19:00" },
+    });
+    fireEvent.change(screen.getByLabelText("Number of Guests"), {
+      target: { value: "4" },
+    });
+    fireEvent.change(screen.getByLabelText("Occasion"), {
+      target: { value: "birthday" },
+    });
+
+    fireEvent.submit(screen.getByText("Reserve a table"));
+
+    expect(console.log).toHaveBeenCalledWith("Data sent");
+  });
 });
