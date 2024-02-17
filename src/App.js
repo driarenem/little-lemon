@@ -7,7 +7,7 @@ import { Route, Routes } from "react-router-dom";
 
 function App() {
   return (
-    <div className="main container">
+    <>
       <MetaTags />
       <NavBar />
       <div className="content">
@@ -19,7 +19,7 @@ function App() {
           />
         </Routes>
       </div>
-    </div>
+    </>
   );
 }
 
