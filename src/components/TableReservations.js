@@ -51,17 +51,18 @@ export default function TableReservations() {
         onSubmit={submitHandler}
         action=""
       >
-        <label htmlFor="" className="form-label">
+        <label htmlFor="date" className="form-label">
           Choose a Date
         </label>
         <input
           required
+          id="date"
           name="date"
           value={data.date}
           onChange={changeHandler}
           type="date"
         />
-        <label className="form-label" htmlFor="">
+        <label className="form-label" htmlFor="time">
           Choose time
         </label>
         <select
@@ -77,7 +78,7 @@ export default function TableReservations() {
           <option value="21:00">21:00</option>
           <option value="22:00">22:00</option>
         </select>
-        <label className="form-label" htmlFor="">
+        <label className="form-label" htmlFor="numberOfGuests">
           Number of Guests
         </label>
         <input
@@ -87,10 +88,10 @@ export default function TableReservations() {
           placeholder="1"
           min={1}
           max={10}
-          id="guests"
+          id="numberOfGuests"
           type="number"
         />
-        <label className="form-label" htmlFor="">
+        <label className="form-label" htmlFor="occasion">
           Occasion
         </label>
         <select

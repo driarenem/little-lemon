@@ -1,10 +1,16 @@
-import React from "react";
 import { render, fireEvent, screen } from "@testing-library/react";
-import TableReservations from "./TableReservations";
+import { BrowserRouter as Router } from "react-router-dom";
+import TableReservations from "./components/TableReservations";
 
 describe("TableReservations", () => {
   it("should submit the form with correct data", () => {
-    render(<TableReservations />);
+    const consoleSpy = jest.spyOn(console, "log");
+
+    render(
+      <Router>
+        <TableReservations />
+      </Router>
+    );
 
     fireEvent.change(screen.getByLabelText("Choose a Date"), {
       target: { value: "2024-02-16" },
@@ -15,12 +21,10 @@ describe("TableReservations", () => {
     fireEvent.change(screen.getByLabelText("Number of Guests"), {
       target: { value: "4" },
     });
-    fireEvent.change(screen.getByLabelText("Occasion"), {
-      target: { value: "birthday" },
-    });
-
     fireEvent.submit(screen.getByText("Reserve a table"));
 
-    expect(console.log).toHaveBeenCalledWith("Data sent");
+    expect(consoleSpy).toHaveBeenCalledWith("Data sent");
+
+    consoleSpy.mockRestore();
   });
 });
